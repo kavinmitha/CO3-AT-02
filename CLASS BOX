@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Box
+{
+private:
+    int volume;
+
+public:
+    Box(int v = 0)
+    {
+        volume = v;
+    }
+
+    bool operator>(Box b)
+    {
+        return volume > b.volume;
+    }
+
+    void display()
+    {
+        cout << "Volume = " << volume << endl;
+    }
+};
+
+int main()
+{
+    Box b1(500);
+    Box b2(300);
+
+    b1.display();
+    b2.display();
+
+    if (b1 > b2)
+        cout << "Box 1 has greater volume";
+    else
+        cout << "Box 2 has greater volume";
+
+    return 0;
+}
