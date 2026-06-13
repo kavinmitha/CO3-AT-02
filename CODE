@@ -1,0 +1,33 @@
+1. Sequence of Calls
+Demo d1(5);
+Constructor called → Construct
+Demo d2(10);
+Constructor called → Construct
+Demo d3 = d1 + d2;
+
+When d1 + d2 is executed:
+
+d2 is passed by value to operator+, so Copy Constructor is called → Copy
+Inside operator+ → Add
+return Demo(x + d.x); creates a temporary object using Constructor → Construct
+operator+ ends, parameter d is destroyed → Destruct
+At the end of main(), objects are destroyed in reverse order:
+d3 → Destruct
+d2 → Destruct
+d1 → Destruct
+2. Exact Output
+Construct Construct Copy Add Construct Destruct Destruct Destruct Destruct
+3. Temporary Objects Created During d1 + d2
+
+One temporary copy of d2 is created because the parameter is passed by value:
+
+Demo operator+(Demo d)
+
+One temporary object is created by:
+
+return Demo(x + d.x);
+
+Total temporary objects created: 2
+
+Copy of d2
+Temporary object returned from operator+
